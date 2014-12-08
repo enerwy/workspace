@@ -1,0 +1,81 @@
+'''
+Created on 25/11/2014
+
+@author: Juanito
+'''
+
+from PyQt4 import QtCore, QtGui
+import interfazNuevaVentana
+import psycopg2
+import sys
+
+from CinterfazSecundaria import interfazSecundaria
+
+class interfazNuevaVentana(QtGui.QDialog, interfazNuevaVentana.Ui_Dialog):
+    def __init__(self, parent=None):
+        super(interfazNuevaVentana, self).__init__(parent)
+        QtGui.QWidget.__init__(self)
+        self.setupUi(self)
+        self.connectActions()
+          
+    
+    #Metodos para invocar nueva pantalla merianteboton
+    def nuevoProyecto2(self):
+        nueva=interfazSecundaria()
+        nueva.exec_()
+    
+    def connectActions(self):
+        self.buttonIniciar.clicked.connect(self.nuevoProyecto2)
+        self.lbl = QtGui.QLabel("", self) 
+    #Metodo para hacer una consulta a la BD, convertirlo en un arreglo y adicionar los items a un combobox
+        self.llenarComboCategoria()#declaro antes la funcion
+        
+    def llenarComboCategoria(self):
+
+        con = psycopg2.connect(database='asocreto', user='postgres', password= 'dsa') 
+        cur = con.cursor()
+        cur.execute('SELECT nombrecategoria from categoria')          
+        registro  = cur.fetchall()
+        r1 = [row[0] for row in registro]
+        cur.close()
+        
+        for i in range(len(r1)):
+            self.cboxCategoria.addItem(r1[i])    
+    
+    #Metodo para tomar la seleccion del cboxCategoria       
+        self.cboxCategoria.activated[str].connect(self.onActivated)
+    def onActivated(self, text):
+        self.lbl.setText(text)
+        self.lbl.adjustSize()
+        seleccion= str(text)  
+        self.lbl.setText("")
+        
+        if seleccion== "Agregados      ":
+            #Metodo para hacer una consulta a la BD, convertirlo en un arreglo y adicionar los items a un combobox
+            self.llenarComboNorma(1)#declaro antes la funcion
+    def llenarComboNorma(self, n):
+        con = psycopg2.connect(database='asocreto', user='postgres', password= 'dsa') 
+        cur = con.cursor()
+        cur.execute("SELECT nombrenorma FROM norma WHERE id_categoria=(select idcategoria from categoria where nombrecategoria = 'Agregados')")          
+        registro2  = cur.fetchall()
+        r2 = [row[0] for row in registro2]
+        cur.close()
+        
+        for i in range(len(r2)):
+            self.cboxNorma.addItem(r2[i])
+
+            #Metodo para tomar la seleccion del cboxNorma       
+        self.cboxNorma.activated[str].connect(self.onActivated1)
+    def onActivated1(self, text):
+        self.lbl.setText(text)
+        self.lbl.adjustSize()
+        seleccion2= str(text)  
+        self.lbl.setText("")
+        
+def main():
+    app = QtGui.QApplication(sys.argv)
+    ventana=interfazNuevaVentana()
+    ventana.show()
+    sys.exit(app.exec_())
+if __name__=='__main__':
+    main()

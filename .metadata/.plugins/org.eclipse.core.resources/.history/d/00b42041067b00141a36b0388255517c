@@ -1,0 +1,33 @@
+'''
+Created on 27/11/2014
+
+@author: Juanito
+'''
+
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+import psycopg2
+import sys
+
+
+con = None
+
+try:
+     
+    con = psycopg2.connect(database='asocreto', user='postgres', password= 'dsa') 
+    cur = con.cursor()
+    cur.execute('SELECT nombrecategoria from categoria')          
+    ver = cur.fetchall()
+    print ver
+    
+
+except psycopg2.DatabaseError, e:
+    print 'Error %s' % e    
+    sys.exit(1)
+    
+    
+finally:
+    
+    if con:
+        con.close()

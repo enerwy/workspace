@@ -1,0 +1,23 @@
+from PyQt4 import  QtCore, QtGui
+from prueba import Ui_MainWindow
+import prueba
+import sys
+
+
+class prueba(QtGui.QMainWindow, prueba.Ui_MainWindow):
+    def __init__(self, parent=None):
+        super(prueba, self).__init__(parent)
+        QtGui.QWidget.__init__(self)
+        self.setupUi(self)
+        self.connectActions()
+        pass
+    
+
+def main():
+    app = QtGui.QApplication(sys.argv)
+    ventana=prueba()
+    ventana.show()
+    sys.exit(app.exec_())
+if __name__=='__main__':
+    main()
+

@@ -1,0 +1,39 @@
+from PyQt4 import  QtCore, QtGui
+from prueba import Ui_MainWindow
+import prueba
+import sys
+import psycopg2
+
+class prueba(QtGui.QMainWindow, prueba.Ui_MainWindow):
+    def __init__(self, parent=None):
+        super(prueba, self).__init__(parent)
+        QtGui.QWidget.__init__(self)
+        self.setupUi(self)
+        
+    
+        self.llenarCombo()#declaro antes la funcion
+
+    def llenarCombo(self):
+
+        con = psycopg2.connect(database='asocreto', user='postgres', password= 'dsa') 
+        cur = con.cursor()
+        cur.execute('SELECT nombrecategoria from categoria')          
+        registro = cur.fetchall()
+        print registro# con esto miro que se se hizo la carga a la lista
+
+        i = 0
+        while i < len(registro):
+            self.provedor.addItem(registro[i][0]+' - '+registro[i][1])
+            self.provedor.addItem(registro[i][1])
+            i = i + 1
+            self.provedor.setCurrentIndex(-1)
+    
+
+def main():
+    app = QtGui.QApplication(sys.argv)
+    ventana=prueba()
+    ventana.show()
+    sys.exit(app.exec_())
+if __name__=='__main__':
+    main()
+
