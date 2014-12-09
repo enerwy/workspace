@@ -5,8 +5,7 @@ Created on 25/11/2014
 '''
 
 
-#!/usr/bin/python
-# -*- coding: cp1252 -*-
+# -*- coding: utf-8 -*-
 
 from PyQt4 import QtCore, QtGui
 
@@ -178,7 +177,7 @@ class Ui_ventanaPrincipal(object):
         self.actionCopiar.setText(_translate("ventanaPrincipal", "Copiar", None))
         self.actionPegar.setText(_translate("ventanaPrincipal", "Pegar", None))
         self.actionEliminar.setText(_translate("ventanaPrincipal", "Eliminar", None))
-        self.actionDistribuci_n.setText(_translate("ventanaPrincipal", "Distribucion", None))
+        self.actionDistribuci_n.setText(_translate("ventanaPrincipal", "Distribución", None))
         self.actionGraficos.setText(_translate("ventanaPrincipal", "Graficos", None))
         self.actionGuardar.setText(_translate("ventanaPrincipal", "Guardar", None))
         self.actionImprimir.setText(_translate("ventanaPrincipal", "Imprimir", None))

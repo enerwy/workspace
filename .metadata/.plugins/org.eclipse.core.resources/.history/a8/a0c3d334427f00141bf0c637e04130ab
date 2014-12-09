@@ -88,7 +88,7 @@ class interfazNuevaVentana(QtGui.QDialog, interfazNuevaVentana.Ui_Dialog):
     def onActivated2(self, text):
         seleccion2 = text
         
-      
+       
         
 def main():
     app = QtGui.QApplication(sys.argv)

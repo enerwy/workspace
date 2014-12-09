@@ -59,9 +59,10 @@ class interfazNuevaVentana(QtGui.QDialog, interfazNuevaVentana.Ui_Dialog):
     def onActivated(self, text):
         seleccion = text
         
+    #Metodo para hacer una consulta a la BD, convertirlo en un arreglo y adicionar los items a un combobox
         
         
-    #Metodo para hacer una consulta a la BD, convertirlo en un arreglo y adicionar los items a un combobox       
+        
     def llenarComboNorma(self):
 
         con = psycopg2.connect(database='asocreto', user='postgres', password= 'dsa') 
@@ -88,7 +89,7 @@ class interfazNuevaVentana(QtGui.QDialog, interfazNuevaVentana.Ui_Dialog):
     def onActivated2(self, text):
         seleccion2 = text
         
-      
+       
         
 def main():
     app = QtGui.QApplication(sys.argv)
