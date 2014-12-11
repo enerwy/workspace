@@ -1,8 +1,4 @@
-'''
-Created on 27/11/2014
-
-@author: Juanito
-'''
+# -*- coding: utf-8 -*-
 
 from PyQt4 import QtCore, QtGui
 import interfazSecundaria

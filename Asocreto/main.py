@@ -1,11 +1,4 @@
-'''
-Created on 25/11/2014
-
-@author: Juanito
-'''
-
-#!/usr/bin/python
-# -*- coding: cp1252 -*-
+# -*- coding: utf-8 -*-
 
 from PyQt4 import  QtCore, QtGui
 from interfazPrincipal import Ui_ventanaPrincipal

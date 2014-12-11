@@ -1,49 +1,32 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 import sys
-from PyQt4 import QtGui, QtCore
-
-class Example(QtGui.QWidget):
-    
-    def __init__(self):
-        super(Example, self).__init__()
-        
-        self.initUI()
-        
-    def initUI(self):      
-
-        self.lbl = QtGui.QLabel("", self)
-
-        combo = QtGui.QComboBox(self)
-        combo.addItem("Ubuntu")
-        combo.addItem("Mandriva")
-        combo.addItem("Fedora")
-        combo.addItem("Red Hat")
-        combo.addItem("Gentoo")
-
-        ##combo.move(50, 50)
-        ##self.lbl.move(50, 150)
-
-        combo.activated[str].connect(self.onActivated)        
-         
-        self.setGeometry(300, 300, 300, 200)
-        self.setWindowTitle('QtGui.QComboBox')
-        self.show()
-        
-    def onActivated(self, text):
-        
-        self.lbl.setText(text)
-        self.lbl.adjustSize()
-        seleccion= text  
-        print seleccion
-                
-def main():
-    
-    app = QtGui.QApplication(sys.argv)
-    ex = Example()
+from PyQt4.QtCore import *
+from PyQt4.QtGui import *
+ 
+data = {'columna 2':['1','2','3'], 'columna 3':['4','5','6'], '':['7','8','9']}
+ 
+class MyTable(QTableWidget):
+    def __init__(self, data, *args):
+        QTableWidget.__init__(self, *args)
+        self.data = data
+        self.setmydata()
+        self.resizeColumnsToContents()
+        self.resizeRowsToContents()
+ 
+    def setmydata(self):
+ 
+        horHeaders = []
+        for n, key in enumerate(sorted(self.data.keys())):
+            horHeaders.append(key)
+            for m, item in enumerate(self.data[key]):
+                newitem = QTableWidgetItem(item)
+                self.setItem(m, n, newitem)
+        self.setHorizontalHeaderLabels(horHeaders)
+ 
+def main(args):
+    app = QApplication(args)
+    table = MyTable(data, 5, 3)
+    table.show()
     sys.exit(app.exec_())
-
-
-if __name__ == '__main__':
-    main()
+ 
+if __name__=="__main__":
+    main(sys.argv)

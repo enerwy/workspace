@@ -1,12 +1,4 @@
-'''
-Created on 25/11/2014
-
-@author: Juanito
-'''
-
-
-#!/usr/bin/python
-# -*- coding: cp1252 -*-
+# -*- coding: utf-8 -*-
 
 from PyQt4 import QtCore, QtGui
 
@@ -159,7 +151,7 @@ class Ui_ventanaPrincipal(object):
 
         self.retranslateUi(ventanaPrincipal)
         QtCore.QMetaObject.connectSlotsByName(ventanaPrincipal)
-
+        
     def retranslateUi(self, ventanaPrincipal):
         ventanaPrincipal.setWindowTitle(_translate("ventanaPrincipal", "Asocreto", None))
         self.menuArchivo.setTitle(_translate("ventanaPrincipal", "Archivo", None))
@@ -178,7 +170,7 @@ class Ui_ventanaPrincipal(object):
         self.actionCopiar.setText(_translate("ventanaPrincipal", "Copiar", None))
         self.actionPegar.setText(_translate("ventanaPrincipal", "Pegar", None))
         self.actionEliminar.setText(_translate("ventanaPrincipal", "Eliminar", None))
-        self.actionDistribuci_n.setText(_translate("ventanaPrincipal", "Distribucion", None))
+        self.actionDistribuci_n.setText(_translate("ventanaPrincipal", "Distribución", None))
         self.actionGraficos.setText(_translate("ventanaPrincipal", "Graficos", None))
         self.actionGuardar.setText(_translate("ventanaPrincipal", "Guardar", None))
         self.actionImprimir.setText(_translate("ventanaPrincipal", "Imprimir", None))
@@ -201,4 +193,3 @@ class Ui_ventanaPrincipal(object):
         self.actionEditar_Cliente.setText(_translate("ventanaPrincipal", "Editar Cliente", None))
         self.actionEliminar_Cliente.setText(_translate("ventanaPrincipal", "Eliminar Cliente", None))
         self.actionVer_Clientes.setText(_translate("ventanaPrincipal", "Ver Clientes", None))
-

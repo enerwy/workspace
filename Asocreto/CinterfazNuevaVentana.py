@@ -1,8 +1,4 @@
-'''
-Created on 25/11/2014
-
-@author: Juanito
-'''
+# -*- coding: utf-8 -*-
 
 from PyQt4 import QtCore, QtGui
 import interfazNuevaVentana
@@ -18,7 +14,8 @@ class interfazNuevaVentana(QtGui.QDialog, interfazNuevaVentana.Ui_Dialog):
         self.setupUi(self)
         self.connectActions()
         self.seleccion=""
-        self.seleccion2=""  
+        self.seleccion2=""
+        self.seleccion3=""  
     
     #Metodos para invocar nueva pantalla merianteboton
     def nuevoProyecto2(self):
@@ -78,7 +75,7 @@ class interfazNuevaVentana(QtGui.QDialog, interfazNuevaVentana.Ui_Dialog):
         for i in range(len(r2)):
             norma = self.palabras(r2[i])
             self.cboxNorma.addItem(norma)
-            print norma    
+               
     
     #Metodo para tomar la seleccion del cboxNorma      
         self.cboxNorma.activated[str].connect(self.onActivated2)
@@ -88,19 +85,17 @@ class interfazNuevaVentana(QtGui.QDialog, interfazNuevaVentana.Ui_Dialog):
         
         self.llenarComboExperimento()#declaro antes la funcion
         
+        
      #Metodo para hacer una consulta a la BD, convertirlo en un arreglo y adicionar los items a un combobox       
     def llenarComboExperimento(self):
         self.cboxExp.clear()
         con = psycopg2.connect(database='asocreto', user='postgres', password= 'dsa') 
         cur = con.cursor()
         self.seleccion=str(self.seleccion)
-        self.seleccion2=str(self.seleccion2)
-        print "SELECT nombreexperimento FROM experimento WHERE idcategoria=(SELECT idcategoria FROM categoria WHERE nombrecategoria = '"+self.seleccion+"') AND idnorma=(SELECT idnorma FROM norma WHERE nombrenorma = '"+self.seleccion2+"')"
-        cur.execute("SELECT nombreexperimento FROM experimento WHERE idcategoria=(SELECT idcategoria FROM categoria WHERE nombrecategoria = '"+self.seleccion+"') AND idnorma=(SELECT idnorma FROM norma WHERE nombrenorma = '"+self.seleccion2+"')")          
-        registro3  = cur.fetchall()
-        print registro3
+        self.seleccion2=str(self.seleccion2)        
+        cur.execute("SELECT codint FROM experimento WHERE idcategoria=(SELECT idcategoria FROM categoria WHERE nombrecategoria = '"+self.seleccion+"') AND idnorma=(SELECT idnorma FROM norma WHERE nombrenorma = '"+self.seleccion2+"')")          
+        registro3  = cur.fetchall()        
         r3 = [row[0] for row in registro3]
-        print r3
         cur.close()
         
         for i in range(len(r3)):
@@ -113,7 +108,23 @@ class interfazNuevaVentana(QtGui.QDialog, interfazNuevaVentana.Ui_Dialog):
     
     
     def onActivated3(self, text):
-        seleccion3 = text
+        self.seleccion3 = text
+        
+        self.llenarNombreExp()
+        
+    def llenarNombreExp (self):
+        self.lbNomExp.clear()
+        con = psycopg2.connect(database='asocreto', user='postgres', password= 'dsa') 
+        cur = con.cursor()
+        self.seleccion=str(self.seleccion)
+        self.seleccion2=str(self.seleccion2)
+        self.seleccion3=str(self.seleccion3)
+        print "SELECT nombreexperimento FROM experimento WHERE idcategoria=(SELECT idcategoria FROM categoria WHERE nombrecategoria = '"+self.seleccion+"') AND idnorma=(SELECT idnorma FROM norma WHERE nombrenorma = '"+self.seleccion2+"') AND codint = '"+self.seleccion3+"'"
+        cur.execute("SELECT nombreexperimento FROM experimento WHERE idcategoria=(SELECT idcategoria FROM categoria WHERE nombrecategoria = '"+self.seleccion+"') AND idnorma=(SELECT idnorma FROM norma WHERE nombrenorma = '"+self.seleccion2+"') AND codint = '"+self.seleccion3+"'")
+        resultname  = str(cur.fetchall()[0])
+        print resultname
+        self.lbNomExp.setText(resultname)
+        
        
 def main():
     app = QtGui.QApplication(sys.argv)
