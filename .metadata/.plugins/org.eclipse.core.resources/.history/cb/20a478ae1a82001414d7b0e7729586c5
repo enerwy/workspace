@@ -1,0 +1,13 @@
+import psycopg2
+
+
+
+def base(self):
+
+        con = psycopg2.connect(database='asocreto', user='postgres', password= 'dsa') 
+        cur = con.cursor()
+        cur.execute('SELECT nombrecategoria from categoria')          
+        registro  = cur.fetchall()
+        registro  = str(cur.fetchall()[0])
+        
+        print resultname

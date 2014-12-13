@@ -1,0 +1,16 @@
+import psycopg2
+
+class prueba2(QtGui.QDialog, ):
+    def __init__(self, parent=None):
+        super(self).__init__(parent)
+        QtGui.QWidget.__init__(self)
+
+    def base(self):
+
+        con = psycopg2.connect(database='asocreto', user='postgres', password= 'dsa') 
+        cur = con.cursor()
+        cur.execute("SELECT nombreexperimento from experimento where idcategoria= 2 and idnorma=2 and codint='C05'")          
+        registro  = cur.fetchall()
+        registro  = str(cur.fetchall()[0])
+        
+        print registro
