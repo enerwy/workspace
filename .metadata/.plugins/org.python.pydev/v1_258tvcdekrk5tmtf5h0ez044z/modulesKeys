@@ -640,7 +640,7 @@ idlelib.configHandler|C:\Python27\Lib\idlelib\configHandler.py
 idlelib.configHelpSourceEdit|C:\Python27\Lib\idlelib\configHelpSourceEdit.py
 idlelib.configSectionNameDialog|C:\Python27\Lib\idlelib\configSectionNameDialog.py
 idlelib.dynOptionMenuWidget|C:\Python27\Lib\idlelib\dynOptionMenuWidget.py
-idlelib.idle|C:\Python27\Lib\idlelib\idle.py
+idlelib.idle|C:\Python27\Lib\idlelib\idle.pyw
 idlelib.idlever|C:\Python27\Lib\idlelib\idlever.py
 idlelib.keybindingDialog|C:\Python27\Lib\idlelib\keybindingDialog.py
 idlelib.macosxSupport|C:\Python27\Lib\idlelib\macosxSupport.py

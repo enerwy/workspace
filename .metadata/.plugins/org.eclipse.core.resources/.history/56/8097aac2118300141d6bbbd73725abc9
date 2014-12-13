@@ -1,0 +1,24 @@
+#!/usr/local/bin/python2.7
+# encoding: utf-8
+'''
+modelos -- Contiene las funciones de los moldelos matemáticos para cálculo
+
+modelos is a description
+
+It defines Todas los modelos físicos y matemáticos
+
+@author:     Carlos Sátiva
+
+@copyright:  2014 ENERWY. All rights reserved.
+
+@license:    Privada
+
+@contact:    neonemrod@gmail.com
+@deffield    updated: Updated
+'''
+
+import sys
+
+
+def c10(Wi,Wf):
+    desgase = (Wi-Wf)*100/Wf 

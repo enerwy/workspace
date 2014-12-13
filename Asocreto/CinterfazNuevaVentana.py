@@ -4,8 +4,9 @@ from PyQt4 import QtCore, QtGui
 import interfazNuevaVentana
 import psycopg2
 import sys
-
+import modelos
 from CinterfazSecundaria import interfazSecundaria
+from inspect import getargs
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -142,12 +143,19 @@ class interfazNuevaVentana(QtGui.QDialog, interfazNuevaVentana.Ui_Dialog):
         ##resultname  = "Tiempo de fraguado del cemento hidr\xc3\xa1ulico. M\xc3\xa9todo del aparato de Vicat (INV E \xc2\x96 305 : 2007)"
         print resultname
         self.lbNomExp.setText(_translate("Dialog", r4[0], None))
+        metodo = "self.metodoP(3,2)"
+        b = modelos.c10(5,4)
+        exec metodo
+        ##b = getargs(self.metodoP)
+        print b
         
-    
-       
+    def metodoP(self,a,b):
+        print "gonorrea ",a+b
+        
 def main():
     app = QtGui.QApplication(sys.argv)
     ventana=interfazNuevaVentana()
+    
     ventana.show()
     sys.exit(app.exec_())
 if __name__=='__main__':
